@@ -4,7 +4,6 @@ import ResultRow from "./ResultRow";
 import { ResultProps } from "./services/fetchPrices";
 
 function App() {
-  const [price, setPrice] = useState<string>("100");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [presentPrices, setPresentPrices] = useState<ResultProps[]>([
     {
@@ -21,8 +20,6 @@ function App() {
       </h1>
       <div className="flex justify-center mt-6">
         <AmountInput
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
           setIsLoading={setIsLoading}
           setPresentPrices={setPresentPrices}
         />

@@ -5,8 +5,8 @@ import Button from "./components/Button";
 import useFetch from "./hooks/useFetch";
 import useWindowResize from "./hooks/useWindowResize";
 import { ResultProps } from "./services/fetchPrices";
-const CURRENCIES: string[] = ["USD", "EUR", "INR"];
-const CRYPTOES: string[] = ["BTC", "ETH", "SOL"];
+const CURRENCIES: string[] = ["USD", "EUR"];
+const CRYPTOES: string[] = ["BTC", "ETH", "SOL", "CELO"];
 
 interface ExtendedProps extends InputProps {
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,12 +16,7 @@ interface ExtendedProps extends InputProps {
   setPrice: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const AmountInput: FC<ExtendedProps> = ({
-  value,
-  onChange,
-  setIsLoading,
-  setPresentPrices,
-}) => {
+const AmountInput: FC<ExtendedProps> = ({ setIsLoading, setPresentPrices }) => {
   const width = useWindowResize();
   const [price, setPrice] = useState<string>("100");
   const [currency, setCurrency] = useState<string>("USD");
@@ -50,8 +45,8 @@ const AmountInput: FC<ExtendedProps> = ({
             <Input
               classNames="text-left border rounded-lg w-24 pl-4 bg-transparent text-xl"
               placeholder="Amount"
-              value={value}
-              onChange={(e) => onChange(e)}
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
             />
             <Dropdown
               options={CURRENCIES}
